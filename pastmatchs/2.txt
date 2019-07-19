@@ -1,0 +1,12 @@
+<html>
+<table>
+{% for element in person_list %}
+    <tr><td>{{Cesvpastmatchs.Left_team_title}}</td>
+    <td>{{Cesvpastmatchs.Left_team_title}}</td>
+    <td>{{Cesvpastmatchs.Left_team_title}}</td>
+    <td>{{Cesvpastmatchs.Left_team_title}}</td>
+    <td>{{Cesvpastmatchs.Left_team_title}}</td>
+    <td>{{Cesvpastmatchs.Left_team_title}}</td></tr>
+{% endfor %}
+</table>
+</html>

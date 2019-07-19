@@ -1,0 +1,42 @@
+<html>
+<head>
+    <style type="text/css">
+        .is-important{
+        font-weight: bold;
+        color: saddlebrown;
+        }
+    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+</head>
+<body>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th scope="col">Название первой команды</th>
+<th scope="col">Букмекерский коэффициент на первую команду</th>
+<th scope="col">Сумма денег, поставленных на первую команду</th>
+<th scope="col">Вероятность выигрыша первой команды</th>
+<th scope="col">Время до начала матча</th>
+<th scope="col">Название второй команды</th>
+<th scope="col">Букмекерский коэффициент на вторую команду</th>
+<th scope="col">Сумма денег, поставленных на вторую команду</th>
+<th scope="col">Вероятность выигрыша второй команды</th>
+</tr>
+</thead>
+{% for element in cesvpresent %}
+<tr><td {% if element.Left_team_title in top_teams_left %}class="is-important"{% endif %}>{{element.Left_team_title}}</td>
+<td>{{element.Left_team_coefficients}}</td>
+<td>{{element.Moneybet_for_left_team}}</td>
+<td>{{element.Left_team_win_percent}}</td>
+<td>{{element.Time_before_match}}</td>
+<td {% if element.Right_team_title in top_teams_right %}class="is-important"{% endif %}>{{element.Right_team_title}}</td>
+<td>{{element.Right_team_coefficients}}</td>
+<td>{{element.Moneybet_for_right_team}}</td>
+<td>{{element.Right_team_win_percent}}</td>
+{% endfor %}
+</table>
+</body>
+</html>
