@@ -18,17 +18,31 @@
 <th scope="col">Верна ли гипотеза</th>
 </tr>
 </thead>
-{% for element in cesvpast %}
-    <tr><td>{{element.Left_team_title}}</td>
-    <td>{{element.Moneybet_for_left_team}}</td>
-    <td>{{element.Score}}</td>
-    <td>{{element.Right_team_title}}</td>
-    <td>{{element.Moneybet_for_right_team}}</td>
-    <td>{{element.Winning_team_match_result}}</td>
-    <td>{{element.Hypothesis}}</td></tr>
-{% endfor %}
+{% block page %}
+    {% if cesvpastmatchs_lists %}
+        {% for element in cesvpast %}
+            <tr><td>{{element.Left_team_title}}</td>
+            <td>{{element.Moneybet_for_left_team}}</td>
+            <td>{{element.Score}}</td>
+            <td>{{element.Right_team_title}}</td>
+            <td>{{element.Moneybet_for_right_team}}</td>
+            <td>{{element.Winning_team_match_result}}</td>
+            <td>{{element.Hypothesis}}</td></tr>
+        {% endfor %}
+        {% for pastmatchlist in cesvpastmatchs_lists %}
+            <pastmatchlist>
+                <a href="{{ pastmatchlist.get_absolute_url }}">
+                    <h2>{{ pastmatchlist.article_title }}</h2>
+                </a>
+                {{ pastmatchlist.desctription|safe }}
+                <p><a class="btn btn-default btn-sm" href="{{ pastmatchlist.get_absolute_url }}">Читать далее</a></p>
+            </pastmatchlist>
+        {% endfor %}
+    {% endif %}
+{% load bootstrap3 %}
+{% bootstrap_pagination cesvpastmatchs_lists %}
+{% endblock %}
 </table>
 </div>
 </body>
-
 </html>

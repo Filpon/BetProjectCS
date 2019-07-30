@@ -6,10 +6,31 @@ from django.contrib.auth.decorators import permission_required
 from .models import Cesvpastmatchs
 from .forms import CesvpastmatchsForm
 from django.http import HttpResponse
+# from django_tables2 import SingleTableView
+
+# class PeopleListView(SingleTableView):
+#     table = PeopleTable
 
 def tablepastmatchs(request):
     cesvpast = Cesvpastmatchs.objects.all()
-    return render(request, 'outputtableh.html', {'cesvpast': cesvpast})
+    context = {'cesvpast': cesvpast}
+    # Создаём Paginator, в который передаём элементы таблицы и указываем, что их будет 10 штук на одну страницу
+    current_page = Paginator(cesvpast, 10)
+    # Pagination в django_bootstrap3 посылает запрос вот в таком виде:
+    # "GET /?page=2 HTTP/1.0" 200,
+    # Поэтому нужно забрать page и попытаться передать его в Paginator для нахождения страницы
+    page = request.GET.get('page')
+    try:
+        # Если существует, то выбираем эту страницу
+        context['cesvpastmatchs_lists'] = current_page.page(page)  
+    except PageNotAnInteger:
+        # Если None, то выбираем первую страницу
+        context['cesvpastmatchs_lists'] = current_page.page(1)  
+    except EmptyPage:
+        # Если вышли за последнюю страницу, то возвращаем последнюю
+        context['cesvpastmatchs_lists'] = current_page.page(current_page.num_pages)
+    # django_tables2.RequestConfig(request, paginate={'per_page': 25}).configure(cesvpast)
+    return render(request, 'outputtableh.html', context)
 
 def pastmatchsget(request):
     template = 'pastmatchs.html'

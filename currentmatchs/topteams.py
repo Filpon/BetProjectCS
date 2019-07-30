@@ -1,6 +1,6 @@
 import pandas as pd
-pastmatchs = pd.read_csv('C:\Projects_Learnpython\past_CSmatchs.csv', sep=';') 
-presentmatchs = pd.read_csv('C:\Projects_Learnpython\present_CSmatchs.csv', sep=';')
+pastmatchs = pd.read_csv('C:\Projects_Learnpython\BetProjectCS\past_CSmatchs.csv', sep=';') 
+presentmatchs = pd.read_csv('C:\Projects_Learnpython\BetProjectCS\present_CSmatchs.csv', sep=';')
 
 # Проверка победы первой команды в прошлых матчах
 lpastmatchs = pastmatchs[['Left_team_title', 'Right_team_title', 'Winning_team_match_result',\
@@ -29,13 +29,13 @@ top_teams_left = []
 top_teams_right = []
 
 for lprmatch in list(lipresentmatchs):
-    if (lprmatch in list(lpastmatchs['Left_team_title'])) and ((list(lpastmatchs['Hypothesis']).count('Гипотеза верна')) >=3)\
-    or lprmatch in list(rpastmatchs['Right_team_title']) and ((list(lpastmatchs['Hypothesis']).count('Гипотеза верна')) >=3):
+    if (lprmatch in list(lpastmatchs['Left_team_title'])) and ((list(lpastmatchs['Hypothesis']).count('Гипотеза верна')) >=7)\
+    or lprmatch in list(rpastmatchs['Right_team_title']) and ((list(lpastmatchs['Hypothesis']).count('Гипотеза верна')) >=7):
         top_teams_left.append(lprmatch)
 
 for rprmatch in list(ripresentmatchs):
-    if (rprmatch in list(lpastmatchs['Left_team_title'])) and ((list(lpastmatchs['Hypothesis']).count('Гипотеза верна')) >=3)\
-    or rprmatch in list(rpastmatchs['Right_team_title']) and ((list(lpastmatchs['Hypothesis']).count('Гипотеза верна')) >=3):
+    if (rprmatch in list(lpastmatchs['Left_team_title'])) and ((list(lpastmatchs['Hypothesis']).count('Гипотеза верна')) >=7)\
+    or rprmatch in list(rpastmatchs['Right_team_title']) and ((list(lpastmatchs['Hypothesis']).count('Гипотеза верна')) >=7):
         print(rprmatch)
         top_teams_right.append(rprmatch)
 

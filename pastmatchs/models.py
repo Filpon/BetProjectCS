@@ -5,10 +5,10 @@ from django.utils import timezone
 
 class Cesvpastmatchs(models.Model):
     Left_team_title  = models.CharField(max_length=50)
-    Moneybet_for_left_team = models.CharField(max_length=50)
+    Moneybet_for_left_team = models.IntegerField(default=0)
     Score = models.CharField(max_length=50)
     Right_team_title = models.CharField(max_length=50)
-    Moneybet_for_right_team = models.CharField(max_length=50)
+    Moneybet_for_right_team = models.IntegerField(default=0)
     Winning_team_match_result = models.CharField(max_length=50)
     Hypothesis = models.CharField(max_length=50)
 

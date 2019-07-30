@@ -25,7 +25,7 @@ SECRET_KEY = '-bg9_pzqax$b!4oa63tlcx6lqda1=1v5v*7m4n^q!u*i$5%ld^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'Filpon.pythonanywhere.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'filpon.pythonanywhere.com']
 
 
 # Application definition
@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'blog',
     'pastmatchs',
     'currentmatchs',
+    'bootstrap3',
+    'django_tables2',
 ]
 
 MIDDLEWARE = [

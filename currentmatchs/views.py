@@ -6,10 +6,11 @@ from .models import Cesvcurrentmatchs
 from .forms import CesvcurrentmatchsForm
 from django.http import HttpResponse
 from currentmatchs.topteams import top_teams_left, top_teams_right
+from django.core.paginator import Paginator
 
 def tablecurrentmatchs(request):
     cesvpresent = Cesvcurrentmatchs.objects.all()
-    return render(request, 'currentmatchstable.html', {'cesvpresent': cesvpresent, 'top_teams_left': top_teams_left, 'top_teams_right': top_teams_right})    
+    return render(request, 'currentmatchstable.html', {'cesvpresent': cesvpresent, 'top_teams_left': top_teams_left, 'top_teams_right': top_teams_right})
 
 def currentmatchsget(request):
     template = 'currentmatchsform.html'
