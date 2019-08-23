@@ -2,27 +2,27 @@ import csv, io
 from django.shortcuts import render, render_to_response, get_object_or_404, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import permission_required
-from .models import Cesvcurrentmatchs
-from .forms import CesvcurrentmatchsForm
+from .models import CesvCurrentMatchs
+from .forms import CesvCurrentMatchsForm
 from django.http import HttpResponse
 from currentmatchs.topteams import top_teams_left, top_teams_right
 from django.core.paginator import Paginator
 
 def tablecurrentmatchs(request):
-    cesvpresent = Cesvcurrentmatchs.objects.all()
+    cesvpresent = CesvCurrentMatchs.objects.all()
     return render(request, 'currentmatchstable.html', {'cesvpresent': cesvpresent, 'top_teams_left': top_teams_left, 'top_teams_right': top_teams_right})
 
 def currentmatchsget(request):
     template = 'currentmatchsform.html'
 
     if request.method == "POST":
-        form = CesvcurrentmatchsForm(request.POST)
+        form = CesvCurrentMatchsForm(request.POST)
 
         if form.is_valid():
             form.save()
 
     else:
-        form = CesvcurrentmatchsForm()
+        form = CesvCurrentMatchsForm()
     
     context = {
         'form': form,
@@ -30,11 +30,11 @@ def currentmatchsget(request):
     return render(request, template, context)
 
 @permission_required('admin.can_add_log_entry')
-def Cesvcurrentmatchs_upload(request):
+def CesvCurrentMatchs_upload(request):
     template = "Cesvcurrentmatchs_upload.html"
     
     prompt = {
-        'order': 'Left_team_title; Left_team_coefficients; Moneybet_for_left_team; Left_team_win_percent; Time_before_match;Right_team_title; Right_team_coefficients; Right_team_win_percent; Moneybet_for_right_team' 
+        'order': 'left_team_title; left_team_coefficients; moneybet_for_left_team; left_team_win_percent; time_before_match; right_team_title; right_team_coefficients; right_team_win_percent; moneybet_for_right_team' 
     }
 
     if request.method == "GET":
@@ -49,16 +49,16 @@ def Cesvcurrentmatchs_upload(request):
     io_string = io.StringIO(data_set)
     next(io_string)
     for column in csv.reader(io_string, delimiter=';', quotechar="|"):
-        _, created = Cesvcurrentmatchs.objects.update_or_create(
-            Left_team_title = column[0],
-            Left_team_coefficients = column[1],
-            Moneybet_for_left_team = column[2],
-            Left_team_win_percent = column[3],
-            Time_before_match = column[4],
-            Right_team_title = column[5],
-            Right_team_coefficients = column[6],
-            Moneybet_for_right_team = column[7],
-            Right_team_win_percent = column[8]
+        _, created = CesvCurrentMatchs.objects.update_or_create(
+            left_team_title = column[0],
+            left_team_coefficients = column[1],
+            moneybet_for_left_team = column[2],
+            left_team_win_percent = column[3],
+            time_before_match = column[4],
+            right_team_title = column[5],
+            right_team_coefficients = column[6],
+            moneybet_for_right_team = column[7],
+            right_team_win_percent = column[8]
         )
 
     context = {}
