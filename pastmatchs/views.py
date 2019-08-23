@@ -3,16 +3,16 @@ from django.shortcuts import render, render_to_response, get_object_or_404, redi
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib import messages
 from django.contrib.auth.decorators import permission_required
-from .models import Cesvpastmatchs
-from .forms import CesvpastmatchsForm
+from .models import CesvPastMatchs
+from .forms import CesvPastMatchsForm
 from django.http import HttpResponse
 # from django_tables2 import SingleTableView
 
 # class PeopleListView(SingleTableView):
 #     table = PeopleTable
 
-def tablepastmatchs(request):
-    cesvpast = Cesvpastmatchs.objects.all()
+def TablePastMatchs(request):
+    cesvpast = CesvPastMatchs.objects.all()
     context = {'cesvpast': cesvpast}
     # Создаём Paginator, в который передаём элементы таблицы и указываем, что их будет 10 штук на одну страницу
     current_page = Paginator(cesvpast, 10)
@@ -32,17 +32,17 @@ def tablepastmatchs(request):
     # django_tables2.RequestConfig(request, paginate={'per_page': 25}).configure(cesvpast)
     return render(request, 'outputtableh.html', context)
 
-def pastmatchsget(request):
+def PastMatchsGet(request):
     template = 'pastmatchs.html'
 
     if request.method == "POST":
-        form = CesvpastmatchsForm(request.POST)
+        form = CesvPastMatchsForm(request.POST)
 
         if form.is_valid():
             form.save()
 
     else:
-        form = CesvpastmatchsForm()
+        form = CesvPastMatchsForm()
     
     context = {
         'form': form,
@@ -50,11 +50,11 @@ def pastmatchsget(request):
     return render(request, template, context)
 
 @permission_required('admin.can_add_log_entry')
-def Cesvpastmatchs_upload(request):
+def CesvPastMatchs_upload(request):
     template = "Cesvpastmatchs_upload.html"
     
     prompt = {
-        'order': 'Order should be: Left team title, Moneybet for left team, Score, Right team title, Moneybet for right team, Winning team/match result, Hypothesis' 
+        'order': 'Order should be: left team title, moneybet for left team, score, right team title, moneybet for right team, winning team/match result, hypothesis' 
     }
 
     if request.method == "GET":
@@ -69,14 +69,14 @@ def Cesvpastmatchs_upload(request):
     io_string = io.StringIO(data_set)
     next(io_string)
     for column in csv.reader(io_string, delimiter=';', quotechar="|"):
-        _, created = Cesvpastmatchs.objects.update_or_create(
-            Left_team_title = column[0],
-            Moneybet_for_left_team = column[1],
-            Score = column[2],
-            Right_team_title = column[3],
-            Moneybet_for_right_team = column[4],
-            Winning_team_match_result = column[5],
-            Hypothesis = column[6]
+        _, created = CesvPastMatchs.objects.update_or_create(
+            left_team_title = column[0],
+            moneybet_for_left_team = column[1],
+            score = column[2],
+            right_team_title = column[3],
+            moneybet_for_right_team = column[4],
+            winning_team_match_result = column[5],
+            hypothesis = column[6]
         )
 
     context = {}
