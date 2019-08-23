@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Cesvcurrentmatchs
+from .models import CesvCurrentMatchs
 
 class CesvCurrentMatchsForm(forms.ModelForm):
     class Meta:
