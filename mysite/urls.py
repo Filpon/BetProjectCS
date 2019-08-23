@@ -15,16 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from pastmatchs.views import pastmatchsget, Cesvpastmatchs_upload, tablepastmatchs
-from currentmatchs.views import currentmatchsget, Cesvcurrentmatchs_upload, tablecurrentmatchs
+from pastmatchs.views import PastMatchsGet, CesvPastMatchs_upload, TablePastMatchs
+from currentmatchs.views import CurrentMatchsGet, CesvCurrentMatchs_upload, TableCurrentMatchs
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blog.urls')),
-    path('pastmatchsget/', pastmatchsget, name="pastmatchsget"),
-    path('upload-pastcsv/', Cesvpastmatchs_upload, name="Cesvpastmatchs_upload"),
-    path('tablepastmatchs/', tablepastmatchs, name="tableslist"),
-    path('currentmatchsget/', currentmatchsget, name="currentmatchsget"),
-    path('upload-currentcsv/', Cesvcurrentmatchs_upload, name="Cesvcurrentmatchs_upload"),
-    path('currentmatchstable/', tablecurrentmatchs, name="tablecurrentmatchs")
+    path('pastmatchsget/', PastMatchsGet, name="PastMatchsGet"),
+    path('upload-pastcsv/', CesvPastMatchs_upload, name="CesvPastMatchs_upload"),
+    path('tablepastmatchs/', TablePastMatchs, name="TablesList"),
+    path('currentmatchsget/', CurrentMatchsGet, name="CurrentMatchsGet"),
+    path('upload-currentcsv/', CesvCurrentMatchs_upload, name="CesvCurrentMatchs_upload"),
+    path('currentmatchstable/', TableCurrentMatchs, name="TableCurrentMatchs")
 ]
