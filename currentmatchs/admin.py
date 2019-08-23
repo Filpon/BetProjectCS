@@ -1,4 +1,4 @@
 from django.contrib import admin
-from .models import Cesvcurrentmatchs
+from .models import CesvCurrentMatchs
 
-admin.site.register(Cesvcurrentmatchs)
+admin.site.register(CesvCurrentMatchs)
