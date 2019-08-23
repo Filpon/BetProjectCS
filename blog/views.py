@@ -4,5 +4,5 @@ from django.contrib import messages
 from django.contrib.auth.decorators import permission_required
 from .models import Post
 
-def post_list(request):
+def Post_List(request):
     return render(request, 'blog/post_list.html', {})
