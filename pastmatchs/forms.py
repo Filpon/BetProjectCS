@@ -1,8 +1,8 @@
 from django import forms
 
-from .models import Cesvpastmatchs
+from .models import CesvPastMatchs
 
-class CesvpastmatchsForm(forms.ModelForm):
+class CesvPastMatchsForm(forms.ModelForm):
     class Meta:
-        model = Cesvpastmatchs
-        fields = ('Left_team_title', 'Moneybet_for_left_team', 'Score', 'Right_team_title', 'Hypothesis')
+        model = CesvPastMatchs
+        fields = ('left_team_title', 'moneybet_for_left_team', 'score', 'right_team_title', 'hypothesis')
