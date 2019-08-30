@@ -23,7 +23,7 @@ get errors from your system's Make when building BetProjectCS, try using
 different Python instead.
 
 GNU Make is a partle free software.  
-All rights reserved by Filipp Ponomarev and Alexander Mikheev.
+All rights reserved by Filipp Ponomarev and Aleksandr Mikheev.
 
 Downloading
 -----------
