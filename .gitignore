@@ -4,4 +4,4 @@ __pycache__
 myvenv
 django.env
 /static
-.DS_Store
+.DS_Stor
